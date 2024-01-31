@@ -35,4 +35,9 @@ const project = new awscdk.AwsCdkTypeScriptApp({
   authorOrganization: true,
 });
 
+project.addScripts({
+  'nat-on': 'npx projen deploy --require-approval never',
+  'nat-off': 'npx projen destroy --force',
+});
+
 project.synth();

@@ -26,7 +26,9 @@
     "test:watch": "npx projen test:watch",
     "upgrade": "npx projen upgrade",
     "watch": "npx projen watch",
-    "projen": "npx projen"
+    "projen": "npx projen",
+    "nat-on": "npx projen deploy --require-approval never",
+    "nat-off": "npx projen destroy --force"
   },
   "author": {
     "name": "OGIS-RI Co.,Ltd.",
