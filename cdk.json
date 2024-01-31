@@ -1,5 +1,18 @@
 {
   "app": "npx ts-node -P tsconfig.json --prefer-ts-exts src/main.ts",
+  "context": {
+    "@ogis-rd/awscdk-nat-gw-switch:stackSettings": {
+      "region": "XX-XXXX-X",
+      "natGwConfigurations": [
+        {
+          "publicSubnetId": "subnet-XXXX",
+          "privateSubnetRouteTableIds": [
+            "rtb-XXXX"
+          ]
+        }
+      ]
+    }
+  },
   "output": "cdk.out",
   "build": "npx projen bundle",
   "watch": {

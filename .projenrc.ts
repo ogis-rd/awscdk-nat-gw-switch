@@ -1,4 +1,6 @@
 import { awscdk, javascript } from 'projen';
+import { stackSettings } from './.projenrc-cdk-context';
+import { StackSettings } from './src/context';
 
 const project = new awscdk.AwsCdkTypeScriptApp({
   name: '@ogis-rd/awscdk-nat-gw-switch',
@@ -17,6 +19,10 @@ const project = new awscdk.AwsCdkTypeScriptApp({
   deps: [
     '@ogis-rd/awscdk-nat-lib@^0',
   ],
+
+  context: {
+    [StackSettings.KEY]: stackSettings,
+  },
 
   packageManager: javascript.NodePackageManager.NPM,
   projenrcTs: true,
