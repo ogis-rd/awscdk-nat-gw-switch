@@ -35,6 +35,15 @@ const project = new awscdk.AwsCdkTypeScriptApp({
   authorOrganization: true,
 });
 
+const npmTokenName = 'NPM_TOKEN';
+
+// Use the per-project config file (ignore the error-prone config file created with actions/setup-node)
+const npmrc = project.npmrc;
+npmrc.addRegistry('https://npm.pkg.github.com', '@ogis-rd');
+npmrc.addConfig('//npm.pkg.github.com/:_authToken', `\${${npmTokenName}}`);
+// "pre" or "post" scripts are not needed for now
+npmrc.addConfig('ignore-scripts', 'true');
+
 project.addScripts({
   'nat-on': 'npx projen deploy --require-approval never',
   'nat-off': 'npx projen destroy --force',
