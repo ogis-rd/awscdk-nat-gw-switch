@@ -2,6 +2,8 @@
   "files": [
     ".eslintrc.json",
     ".gitattributes",
+    ".github/workflows/nat-off.yml",
+    ".github/workflows/nat-on.yml",
     ".gitignore",
     ".npmignore",
     ".npmrc",

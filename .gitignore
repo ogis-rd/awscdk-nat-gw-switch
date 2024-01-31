@@ -45,4 +45,6 @@ junit.xml
 .cdk.staging/
 .parcel-cache/
 !/.npmrc
+!/.github/workflows/nat-on.yml
+!/.github/workflows/nat-off.yml
 !/.projenrc.ts

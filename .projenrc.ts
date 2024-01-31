@@ -1,4 +1,5 @@
 import { awscdk, javascript } from 'projen';
+import { Job, JobPermission, JobStep } from 'projen/lib/github/workflows-model';
 import { stackSettings } from './.projenrc-cdk-context';
 import { StackSettings } from './src/context';
 
@@ -43,6 +44,69 @@ npmrc.addRegistry('https://npm.pkg.github.com', '@ogis-rd');
 npmrc.addConfig('//npm.pkg.github.com/:_authToken', `\${${npmTokenName}}`);
 // "pre" or "post" scripts are not needed for now
 npmrc.addConfig('ignore-scripts', 'true');
+
+if (stackSettings) {
+  const switchJobCommonDefinition: Omit<Job, 'steps'> = {
+    permissions: {
+      // Required for JWT
+      idToken: JobPermission.WRITE,
+      // Required for actions/checkout
+      contents: JobPermission.READ,
+    },
+    runsOn: ['ubuntu-latest'],
+    timeoutMinutes: 10,
+  };
+
+  const switchJobPreSteps: JobStep[] = [
+    {
+      uses: 'actions/checkout@v4',
+    },
+    {
+      uses: 'actions/setup-node@v4',
+      with: {
+        'node-version': '18',
+        'cache': 'npm',
+      },
+    },
+    {
+      uses: 'aws-actions/configure-aws-credentials@v4',
+      with: {
+        'role-to-assume': '${{ secrets.ROLE_TO_ASSUME }}',
+        'aws-region': stackSettings.region,
+      },
+    },
+    {
+      run: 'npm ci',
+      env: {
+        [`${npmTokenName}`]: `\${{ secrets.${npmTokenName} }}`,
+      },
+    },
+  ];
+
+  const natOn = project.github!.addWorkflow('nat-on');
+  natOn.on({ workflowDispatch: {} });
+  natOn.addJob('nat-on', {
+    ...switchJobCommonDefinition,
+    steps: switchJobPreSteps.concat(
+      {
+        name: 'NAT ON',
+        run: 'npm run nat-on',
+      },
+    ),
+  });
+
+  const natOff = project.github!.addWorkflow('nat-off');
+  natOff.on({ workflowDispatch: {} });
+  natOff.addJob('nat-off', {
+    ...switchJobCommonDefinition,
+    steps: switchJobPreSteps.concat(
+      {
+        name: 'NAT OFF',
+        run: 'npm run nat-off',
+      },
+    ),
+  });
+}
 
 project.addScripts({
   'nat-on': 'npx projen deploy --require-approval never',
