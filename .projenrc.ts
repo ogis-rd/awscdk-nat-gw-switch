@@ -7,11 +7,11 @@ const project = new awscdk.AwsCdkTypeScriptApp({
   name: '@ogis-rd/awscdk-nat-gw-switch',
   description: 'AWS CDK app to turn NAT gateways on and off',
 
-  buildWorkflow: false,
   depsUpgradeOptions: {
     workflow: false,
   },
   githubOptions: {
+    mergify: false,
     pullRequestLint: false,
   },
   pullRequestTemplate: false,
