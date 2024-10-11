@@ -3,6 +3,8 @@ import { Job, JobPermission, JobStep } from 'projen/lib/github/workflows-model';
 import { stackSettings } from './.projenrc-cdk-context';
 import { StackSettings } from './src/context';
 
+const contributorStatement = 'By submitting this pull request, I confirm that my contribution is made under the terms of the Apache-2.0 license.';
+
 const project = new awscdk.AwsCdkTypeScriptApp({
   name: '@ogis-rd/awscdk-nat-gw-switch',
   description: 'AWS CDK app to turn NAT gateways on and off',
@@ -12,10 +14,22 @@ const project = new awscdk.AwsCdkTypeScriptApp({
   },
   githubOptions: {
     mergify: false,
-    pullRequestLint: false,
+    pullRequestLintOptions: {
+      contributorStatement,
+      semanticTitleOptions: {
+        types: [
+          'chore',
+          'docs',
+          'feat',
+          'fix',
+        ],
+      },
+    },
   },
-  pullRequestTemplate: false,
-
+  pullRequestTemplateContents: [
+    // empty for now
+    '',
+  ],
   cdkVersion: '2.73.0',
   deps: [
     '@ogis-rd/awscdk-nat-lib@^0',

@@ -2,9 +2,11 @@
   "files": [
     ".eslintrc.json",
     ".gitattributes",
+    ".github/pull_request_template.md",
     ".github/workflows/build.yml",
     ".github/workflows/nat-off.yml",
     ".github/workflows/nat-on.yml",
+    ".github/workflows/pull-request-lint.yml",
     ".gitignore",
     ".npmignore",
     ".npmrc",
