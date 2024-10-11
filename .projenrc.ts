@@ -10,7 +10,10 @@ const project = new awscdk.AwsCdkTypeScriptApp({
   description: 'AWS CDK app to turn NAT gateways on and off',
 
   depsUpgradeOptions: {
-    workflow: false,
+    signoff: false,
+    workflowOptions: {
+      schedule: javascript.UpgradeDependenciesSchedule.NEVER,
+    },
   },
   githubOptions: {
     mergify: false,

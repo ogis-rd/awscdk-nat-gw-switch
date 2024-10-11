@@ -7,6 +7,7 @@
     ".github/workflows/nat-off.yml",
     ".github/workflows/nat-on.yml",
     ".github/workflows/pull-request-lint.yml",
+    ".github/workflows/upgrade.yml",
     ".gitignore",
     ".npmignore",
     ".npmrc",
