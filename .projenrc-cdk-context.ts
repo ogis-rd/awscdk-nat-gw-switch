@@ -3,7 +3,7 @@ import { StackSettings } from "./src/context";
 // Modify the settings and synthesize the project (`npm run projen`).
 // The project's `cdk.json` file and workflow files will be updated.
 export const stackSettings: StackSettings = {
-  region: 'XX-XXXX-X',
+  region: 'xx-xxxx-1',
   natGwConfigurations: [
     {
       publicSubnetId: 'subnet-XXXX',

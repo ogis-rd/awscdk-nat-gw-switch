@@ -18,7 +18,7 @@ jobs:
       - uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
-          aws-region: XX-XXXX-X
+          aws-region: xx-xxxx-1
       - env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm ci
