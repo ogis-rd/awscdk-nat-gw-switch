@@ -1,4 +1,4 @@
-import { awscdk, javascript } from 'projen';
+import { awscdk, javascript, JsonPatch } from 'projen';
 import { Job, JobPermission, JobStep } from 'projen/lib/github/workflows-model';
 import { stackSettings } from './.projenrc-cdk-context';
 import { StackSettings } from './src/context';
@@ -130,5 +130,15 @@ project.addScripts({
   'nat-on': 'npx projen deploy --require-approval never',
   'nat-off': 'npx projen destroy --force',
 });
+
+// A workaround for missing feature: access token for `npm install` step
+const npmTokenPatchValue = { [`${npmTokenName}`]: `\${{ secrets.${npmTokenName} }}` };
+project.github!.tryFindWorkflow('build')!.file!.patch(
+  JsonPatch.add('/jobs/build/steps/1/env', npmTokenPatchValue),
+);
+project.github!.tryFindWorkflow('upgrade')!.file!.patch(
+  JsonPatch.add('/jobs/upgrade/steps/1/env', npmTokenPatchValue),
+  JsonPatch.add('/jobs/upgrade/steps/2/env', npmTokenPatchValue),
+);
 
 project.synth();
