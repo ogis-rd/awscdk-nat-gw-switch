@@ -69,7 +69,7 @@
     },
     {
       "name": "@ogis-rd/awscdk-nat-lib",
-      "version": "^0",
+      "version": "^0.1.1",
       "type": "runtime"
     },
     {

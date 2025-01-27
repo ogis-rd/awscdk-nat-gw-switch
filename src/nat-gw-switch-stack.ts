@@ -35,7 +35,7 @@ export class NatGwSwitchStack extends core.Stack {
       });
 
       const eip = config.allocationId
-        ? nat.Eip.fromEipAttributes(this, `Eip${suffix}`, { eipAllocationId: config.allocationId })
+        ? nat.Eip.fromAllocationId(this, `Eip${suffix}`, config.allocationId)
         : undefined;
 
       new nat.DefaultPublicNatGateway(this, `DefaultPublicNatGateway${index + 1}`, {

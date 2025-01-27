@@ -35,7 +35,7 @@ const project = new awscdk.AwsCdkTypeScriptApp({
   ],
   cdkVersion: '2.73.0',
   deps: [
-    '@ogis-rd/awscdk-nat-lib@^0',
+    '@ogis-rd/awscdk-nat-lib@^0.1.1',
   ],
   projenVersion: '0.87.4',
 
