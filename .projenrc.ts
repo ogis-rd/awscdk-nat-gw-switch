@@ -37,7 +37,7 @@ const project = new awscdk.AwsCdkTypeScriptApp({
   deps: [
     '@ogis-rd/awscdk-nat-lib@^0.1.1',
   ],
-  projenVersion: '0.88.9',
+  projenVersion: '0.90.6',
 
   context: {
     [StackSettings.KEY]: stackSettings,
