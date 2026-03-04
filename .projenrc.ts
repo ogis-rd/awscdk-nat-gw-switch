@@ -80,17 +80,17 @@ if (stackSettings) {
 
   const switchJobPreSteps: JobStep[] = [
     {
-      uses: 'actions/checkout@v4',
+      uses: 'actions/checkout@v5',
     },
     {
-      uses: 'actions/setup-node@v4',
+      uses: 'actions/setup-node@v5',
       with: {
-        'node-version': '18',
+        'node-version': 'lts/*',
         'cache': 'npm',
       },
     },
     {
-      uses: 'aws-actions/configure-aws-credentials@v4',
+      uses: 'aws-actions/configure-aws-credentials@v5',
       with: {
         'role-to-assume': '${{ secrets.ROLE_TO_ASSUME }}',
         'aws-region': stackSettings.region,
