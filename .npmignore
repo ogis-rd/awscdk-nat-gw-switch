@@ -21,6 +21,7 @@ tsconfig.tsbuildinfo
 !/assets/
 cdk.out/
 .cdk.staging/
+AGENTS.md
 /.gitattributes
 /.projenrc.ts
 /projenrc

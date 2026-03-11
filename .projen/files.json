@@ -14,6 +14,7 @@
     ".projen/deps.json",
     ".projen/files.json",
     ".projen/tasks.json",
+    "AGENTS.md",
     "cdk.json",
     "LICENSE",
     "tsconfig.dev.json",

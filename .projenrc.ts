@@ -1,4 +1,4 @@
-import { awscdk, javascript, JsonPatch } from 'projen';
+import { AiAgent, AiInstructions, awscdk, javascript, JsonPatch } from 'projen';
 import { Job, JobPermission, JobStep } from 'projen/lib/github/workflows-model';
 import { stackSettings } from './.projenrc-cdk-context';
 import { StackSettings } from './src/context';
@@ -132,6 +132,11 @@ if (stackSettings) {
 project.addScripts({
   'nat-on': 'npx projen deploy --require-approval never',
   'nat-off': 'npx projen destroy --force',
+});
+
+new AiInstructions(project, {
+  // This exists to create the AGENTS.md file with a single line, not because of Codex
+  agents: [AiAgent.CODEX],
 });
 
 // A workaround for missing feature: access token for `npm install` step

@@ -51,4 +51,5 @@ junit.xml
 !/.npmrc
 !/.github/workflows/nat-on.yml
 !/.github/workflows/nat-off.yml
+!/AGENTS.md
 !/.projenrc.ts
