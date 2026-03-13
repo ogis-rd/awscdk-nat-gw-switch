@@ -1,3 +1,4 @@
+import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import * as core from 'aws-cdk-lib/core';
 import { ImportedPrivateSubnet, ImportedPrivateSubnetAttributes } from '../src/imported-private-subnet';
 
@@ -24,6 +25,6 @@ describe('ImportedPrivateSubnet', () => {
     expect(() => subnet.internetConnectivityEstablished).toThrow('Not accessible');
     expect(() => subnet.ipv4CidrBlock).toThrow('Not accessible');
     expect(() => subnet.subnetId).toThrow('Not accessible');
-    expect(() => subnet.associateNetworkAcl('id', {} as any)).toThrow('Not implemented');
+    expect(() => subnet.associateNetworkAcl('id', {} as ec2.INetworkAcl)).toThrow('Not implemented');
   });
 });
