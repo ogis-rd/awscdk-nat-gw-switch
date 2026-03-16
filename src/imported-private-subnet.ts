@@ -22,6 +22,8 @@ export class ImportedPrivateSubnet extends core.Resource implements ec2.IPrivate
   public get ipv4CidrBlock(): string { throw new Error('Not accessible'); }
   /* istanbul ignore next */
   public get subnetId(): string { throw new Error('Not accessible'); }
+  /* istanbul ignore next */
+  public get subnetRef(): ec2.SubnetReference { throw new Error('Not accessible'); }
 
   constructor(scope: Construct, id: string, attrs: ImportedPrivateSubnetAttributes) {
     super(scope, id);

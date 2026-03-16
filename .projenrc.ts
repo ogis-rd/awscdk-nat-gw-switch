@@ -34,9 +34,7 @@ const project = new awscdk.AwsCdkTypeScriptApp({
     '',
   ],
 
-  // Pin to the last version before breaking changes to L2 constructs
-  cdkVersion: '2.214.0',
-  cdkVersionPinning: true,
+  cdkVersion: '2.214.1',
   deps: [
     '@ogis-rd/awscdk-nat-lib@^0.1.1',
   ],
