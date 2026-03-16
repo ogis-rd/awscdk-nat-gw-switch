@@ -25,6 +25,7 @@ describe('ImportedPrivateSubnet', () => {
     expect(() => subnet.internetConnectivityEstablished).toThrow('Not accessible');
     expect(() => subnet.ipv4CidrBlock).toThrow('Not accessible');
     expect(() => subnet.subnetId).toThrow('Not accessible');
+    expect(() => subnet.subnetRef).toThrow('Not accessible');
     expect(() => subnet.associateNetworkAcl('id', {} as ec2.INetworkAcl)).toThrow('Not implemented');
   });
 });
